@@ -1,0 +1,34 @@
+
+<%= form_for(@project, html: {multipart: true}) do |f| %>
+    <div>
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+    </div>
+    <div>
+      <%= f.label :description %>
+      <%= f.text_field :description %>
+    </div>
+  <div>
+    <%= f.label :funding_goal %>
+    <%= f.number_field :funding_goal %>
+  </div>
+  <div>
+    <%= f.label :start_date %>
+    <%= f.date_field :start_date %>
+  </div>
+  <div>
+    <%= f.label :end_date %>
+    <%= f.date_field :end_date %>
+  </div>
+
+  <p>Rewards</p>
+  <%= f.fields_for :rewards do |r| %>
+    <%= render 'reward_fields', :f => r %>
+  <% end %>
+  </div>
+
+  <div>
+    <%= link_to_add_association 'add reward', f, :rewards %>
+  </div>
+  <%= f.submit %>
+<% end %>
