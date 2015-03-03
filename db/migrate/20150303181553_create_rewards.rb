@@ -5,6 +5,7 @@ class CreateRewards < ActiveRecord::Migration
     	t.text :description
     	t.integer :backer_limit
     	t.integer :amount
+    	t.integer :project_id
       t.timestamps null: false
     end
   end

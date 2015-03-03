@@ -15,6 +15,8 @@ ActiveRecord::Schema.define(version: 20150303184757) do
 
   create_table "pledges", force: :cascade do |t|
     t.integer  "amount"
+    t.integer  "backer_id"
+    t.integer  "reward_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -25,6 +27,7 @@ ActiveRecord::Schema.define(version: 20150303184757) do
     t.integer  "funding_goal"
     t.date     "start_date"
     t.date     "end_date"
+    t.integer  "owner_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
   end
@@ -34,6 +37,7 @@ ActiveRecord::Schema.define(version: 20150303184757) do
     t.text     "description"
     t.integer  "backer_limit"
     t.integer  "amount"
+    t.integer  "project_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
   end

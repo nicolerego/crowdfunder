@@ -5,7 +5,8 @@ class CreateProjects < ActiveRecord::Migration
     	t.text :description
     	t.integer :funding_goal
     	t.date :start_date
-    	t.date :end_date	
+    	t.date :end_date
+      t.integer :owner_id	
       t.timestamps null: false
     end
   end
