@@ -12,7 +12,7 @@ class UsersController < ApplicationController
 		else
 			render 'new'
 		end 
-	end 
+	end  
 
 	private
 	def user_params
