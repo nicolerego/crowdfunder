@@ -1,0 +1,20 @@
+<h1>Crowdfunder!</h1>
+
+<h3>Popular Projects</h3>
+
+	<% @project.each do |project| %>
+		<div id="homeprojects">
+		  <h4><%= project.name %></h4>
+		  <p>by <%= project.owner %></p>
+		  <p><%= project.description %></p>
+		  <p>Pledged: </p>
+		  <p>Bakcers: </p>
+		</div>
+	<% end %>
+
+<h3>Find a Project</h3>
+<p>Category Names will be listed here!</p>
+<%= form_tag projects_path, method: :get, remote: true, authentication: false, id: 'search-form' do %>
+	<%= text_field_tag :search, params[:search] %>
+	<%= submit_tag "Search" %>
+<% end %>
