@@ -19,9 +19,11 @@
 <h1>My Project Status:</h1>
 	
 	<% current_user.owned_projects.each do |project| %>
-		<%= project.name %>
-		<%= project.description %>
-		<%= project.funding_goal %>
+		<%= project.name %><br>
+		<%= project.description %><br>
+		<%= project.funding_goal %><br>
+    <!-- total amount of pledged for the project -->
+    <!-- number of backers at each reward -->
 		<!-- current pledge amount -->
 		<%= distance_of_time_in_words(Time.now, project.end_date) %> 
 	<% end %>
