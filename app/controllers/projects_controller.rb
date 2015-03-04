@@ -9,8 +9,7 @@ class ProjectsController < ApplicationController
 	end
 
 	def create
-		@project = Project.new(project_params)
-		@project.owner = current_user
+		@project = current_user.owned_projects.new(project_params)
 
 		if @project.save
 			redirect_to project_url(@project), notice: "Project was created!"
