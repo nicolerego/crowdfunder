@@ -2,14 +2,15 @@
 
 <h3>Popular Projects</h3>
 
-	<% @project.each do |project| %>
+	<% @top3projects.each do |project| %>
 		<div id="homeprojects">
 		  <h4><%= project.name %></h4>
 		  <p>
 			  by <%= project.owner.first_name %> <%= project.owner.last_name %> </br>
 			  <%= project.description %> </br>
-			  Pledged: (not defined yet)</br>
-			  Days to go: <%= (project.end_date - project.start_date).to_i %></br>
+			  Goal:  $<%= project.funding_goal %>.00</br>
+			  Pledged: <%=  %></br>
+			  Days to go: <%= (project.end_date - project.start_date).to_i %> days</br>
 		  </p>
 		</div>
 	<% end %>
@@ -20,3 +21,7 @@
 	<%= text_field_tag :search, params[:search] %>
 	<%= submit_tag "Search" %>
 <% end %>
+
+<div id="projects">
+<%= render @projects if @projects %>
+</div>

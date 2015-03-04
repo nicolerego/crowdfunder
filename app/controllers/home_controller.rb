@@ -1,16 +1,17 @@
 class HomeController < ApplicationController
 	def index
-		# @project = Project.all
+    # sort by pledged amount desc
+		@top3projects = Project.all.limit(3)
 
-		@projects = if params[:search]
-     		Project.where("LOWER(title) LIKE LOWER(?)", "%#{params[:search]}%")
-  		else 
-  			@project = Project.all.limit(3)
-  		end 
-  		
-  		respond_to do |format|
-	      	format.html 
-	      	format.js
-    	end 
+    if params[:search]
+     		@projects = Project.where("LOWER(name) LIKE LOWER(?)", "%#{params[:search]}%")
+    end 
+
+		respond_to do |format|
+      	format.html 
+      	format.js
+  	end 
 	end 
+
+
 end
