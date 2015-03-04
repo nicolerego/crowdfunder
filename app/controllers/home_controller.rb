@@ -3,9 +3,9 @@ class HomeController < ApplicationController
 		# @project = Project.all
 
 		@projects = if params[:search]
-     		Project.where("LOWER(name) LIKE LOWER(?)", "%#{params[:search]}%")
+     		Project.where("LOWER(title) LIKE LOWER(?)", "%#{params[:search]}%")
   		else 
-  			@project = Project.all
+  			@project = Project.all.limit(3)
   		end 
   		
   		respond_to do |format|

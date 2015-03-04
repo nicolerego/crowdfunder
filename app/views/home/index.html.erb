@@ -5,10 +5,12 @@
 	<% @project.each do |project| %>
 		<div id="homeprojects">
 		  <h4><%= project.name %></h4>
-		  <p>by <%= project.owner %></p>
-		  <p><%= project.description %></p>
-		  <p>Pledged: </p>
-		  <p>Bakcers: </p>
+		  <p>
+			  by <%= project.owner.first_name %> <%= project.owner.last_name %> </br>
+			  <%= project.description %> </br>
+			  Pledged: (not defined yet)</br>
+			  Days to go: <%= (project.end_date - project.start_date).to_i %></br>
+		  </p>
 		</div>
 	<% end %>
 
