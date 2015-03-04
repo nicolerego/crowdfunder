@@ -6,4 +6,11 @@ class Project < ActiveRecord::Base
 
 	accepts_nested_attributes_for :rewards, reject_if: :all_blank, allow_destroy: :true
 
+	# def time_remaining
+	#   end_date - Time.now
+	# end
+
+	# def elapsed
+ #  	Time.now - start_date
+	# end
 end
