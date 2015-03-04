@@ -10,12 +10,14 @@ class ProjectsController < ApplicationController
 
 	def create
 		@project = Project.new(project_params)
+		@project.owner = current_user
+
 		if @project.save
 			redirect_to project_url(@project), notice: "Project was created!"
 		else
 			flash.now[:alert] = "Some error occured, retry submitting the project"
 			render :new
-		end
+		 end
 	end
 
 	def show

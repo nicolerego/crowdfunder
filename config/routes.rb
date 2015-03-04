@@ -1,12 +1,10 @@
 Rails.application.routes.draw do
-  get 'home/index'
-
-  root 'home#index'
-
+  
+  
   resources :projects
   resources :rewards
   resources :pledges
-  resources :users
+  resources :users, only: [:new, :create, :show]
   resources :user_sessions
 
   get 'login' => 'user_sessions#new', :as => :login
