@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'pledge/show'
+
+  get 'pledge/create'
+
   get 'home/index'
 
   root 'home#index'
