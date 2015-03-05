@@ -1,2 +1,13 @@
-<h4><%= project.name %> by <%= project.owner.first_name %> <%= project.owner.last_name %> </h4>
-</p>
+
+<div>
+	<p>Project Photo here!</p>
+	<p>Project Description: <%= project.description %> </p>
+	<p>Owned and created by: <%= project.owner.first_name%></p>
+	<p>Funding Goal: <%= number_to_currency project.funding_goal %></p>
+	<p>Amount Raised: <span> <%= number_to_currency project.amount_raised %> </span> </p>
+
+	<p>Days to go: <%= time_ago_in_words(project.end_date) %></p>
+	<!-- <p>Start date: <%= project.start_date.strftime("%b %d, %Y") %></p>
+	<p>End date: <%= project.end_date.strftime("%b %d, %Y") %></p> -->
+
+</div>

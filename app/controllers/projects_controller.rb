@@ -22,6 +22,11 @@ class ProjectsController < ApplicationController
 
 	def show
 		@project = Project.find(params[:id])
+
+		if request.xhr?
+			render @project
+		end
+
 	end
 
 	def edit
