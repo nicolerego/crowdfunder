@@ -4,5 +4,6 @@ $(document).on('ready page:load', function(){
 		var searchValue = $('#search').val();
 
 		$.getScript('?search=' + searchValue);
+		$('input[type="text"],textarea').val('');
 	});
 });
