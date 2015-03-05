@@ -22,7 +22,7 @@
 <p></p>
 
 <% @project.rewards.each do |reward| %>
-  <p><%= reward.title %> <%= link_to "Check it out!", "/projects/#{project.id}" %></p>
+  <p><%= reward.title %> <%= link_to "Check it out!", "/projects/#{@project.id}" %></p>
   <p>Description: <%= reward.description %></p>
   <p>Amount ($): <%= reward.amount %></p>
 <% end %>
