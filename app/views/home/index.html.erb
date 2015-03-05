@@ -11,6 +11,7 @@
 			  Goal:  $<%= project.funding_goal %>.00</br>
 			  Pledged: <%=  %></br>
 			  Days to go: <%= (project.end_date - project.start_date).to_i %> days</br>
+			  <p><%= link_to "Check it out!", "/projects/#{project.id}" %></p>
 		  </p>
 		</div>
 	<% end %>
