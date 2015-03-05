@@ -22,13 +22,14 @@
   </div>
 
   <p>Rewards</p>
-  <%= f.fields_for :rewards do |reward_fields| %>
-    <%= render 'reward_fields', :f => reward_fields %>
+  <div id="rewards">
+  <%= f.fields_for :rewards do |reward| %>
+    <%= render 'reward_fields', :f => reward %>
   <% end %>
-  </div>
-
   <div class="links">
     <%= link_to_add_association 'Add a Reward', f, :rewards %>
   </div>
-  <%= f.submit %>
+  </div>
+  <%= f.submit :submit %>
+
 <% end %>

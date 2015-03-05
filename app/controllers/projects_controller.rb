@@ -10,7 +10,9 @@ class ProjectsController < ApplicationController
 	end
 
 	def create
-		@project = Project.new(project_params)
+
+		@project = current_user.owned_projects.new(project_params)
+		# @project = Project.new(project_params)
 		if @project.save
 			redirect_to project_url(@project), notice: "Project was created!"
 		else
@@ -28,7 +30,7 @@ class ProjectsController < ApplicationController
   	end
 
 	def update
-		@project = Project.find(parmas[:id])
+		@project = Project.find(params[:id])
 		if @project.update_attributes(project_params)
 			redirect_to projects_path(@project)
 		else
