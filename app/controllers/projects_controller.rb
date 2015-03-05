@@ -10,7 +10,6 @@ class ProjectsController < ApplicationController
 	end
 
 	def create
-
 		@project = current_user.owned_projects.new(project_params)
 		# @project = Project.new(project_params)
 		if @project.save
@@ -31,7 +30,7 @@ class ProjectsController < ApplicationController
 
 	def update
 		@project = Project.find(params[:id])
-		if @project.update_attributes(project_params)
+		if @project.update_attributes(project_params) 
 			redirect_to projects_path(@project)
 		else
 			flash.now[:alert] = "Some error occured, retry editting the project"
@@ -42,12 +41,11 @@ class ProjectsController < ApplicationController
 	def destroy
 		@project = Project.find(params[:id])
 		@project.destroy
-		redirect_to projects_path
-		# Need to replace the redirect to the home page here
+		redirect_to root_url
 	end
 
 	private
 	def project_params
-		params.require(:project).permit(:name, :description, :funding_goal, :start_date, :end_date, rewards_attribute:[:title, :description, :amount])
+		params.require(:project).permit(:name, :description, :funding_goal, :start_date, :end_date, rewards_attributes:[:id, :title, :description, :amount, :backer_limit])
 	end
 end
