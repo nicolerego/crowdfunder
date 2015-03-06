@@ -7,6 +7,7 @@ class Project < ActiveRecord::Base
   has_many :pledges
 
 	validates :owner, presence: true
+  validates :name, :description, :funding_goal, :start_date, :end_date, presence: true
 
   def ensure_data
     if start_date > end_date
@@ -41,3 +42,4 @@ class Project < ActiveRecord::Base
   end
 
 end
+

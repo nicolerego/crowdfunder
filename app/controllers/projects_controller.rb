@@ -1,11 +1,9 @@
 class ProjectsController < ApplicationController
-	before_filter :require_login, only: [:new, :create]
+	before_filter :require_login, only: [:new, :create, :edit]
 	
 	def index
-		@project = Project.where("end_date > ?", Time.now)
-  end
-
-
+		@project = Project.where("end_date >  ?", Time.now)
+	end
 
 	def new
 		@project = Project.new
@@ -23,6 +21,11 @@ class ProjectsController < ApplicationController
 
 	def show
 		@project = Project.find(params[:id])
+
+		if request.xhr?
+			render @project
+		end
+
 	end
 
 	def edit
@@ -37,6 +40,7 @@ class ProjectsController < ApplicationController
 			flash.now[:alert] = "Some error occured, retry editting the project"
 			render :edit
 		end
+
 	end
 
 	def destroy

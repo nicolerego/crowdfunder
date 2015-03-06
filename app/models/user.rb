@@ -3,8 +3,7 @@ class User < ActiveRecord::Base
 
   validates :password, length: { minimum: 8 }
   validates :password, confirmation: true
-  validates :password_confirmation, presence: true
-
+  validates :first_name, :last_name, :email, :password_confirmation, presence: true
   validates :email, uniqueness: true
 
 
@@ -12,9 +11,12 @@ class User < ActiveRecord::Base
   has_many :backed_projects, through: :pledges, source: :project
   has_many :owned_projects, class_name: 'Project', foreign_key: :owner_id
 
+  def total_pledges
+    pledges.pluck(:amount).sum(0)
+  end
 
-def total_pledges
-  pledges.pluck(:amount).sum(0)
-end
+  def money_spent
+  	pledges.sum('amount')
+  end 
 
 end

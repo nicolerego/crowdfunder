@@ -3,8 +3,6 @@ class HomeController < ApplicationController
     # sort by pledged amount desc
 		@top3projects = Project.all.limit(3)
 
-    # @collected_funds = Pledge.sum("amount").where(pledge.project_id = project_id)
-
     if params[:search]
      		@projects = Project.where("LOWER(name) LIKE LOWER(?)", "%#{params[:search]}%")
     end 

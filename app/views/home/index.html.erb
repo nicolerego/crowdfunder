@@ -9,7 +9,7 @@
 			  by <%= project.owner.first_name %> <%= project.owner.last_name %> </br>
 			  <%= project.description %> </br>
 			  Goal:  $<%= project.funding_goal %>.00</br>
-			  Pledged: <%= Pledge.sum("amount") %></br>
+			  Pledged: <%= number_to_currency project.amount_raised %></br>
 			  Days to go: <%= (project.end_date - project.start_date).to_i %> days</br>
 			  <p><%= link_to "Check it out!", "/projects/#{project.id}" %></p>
 		  </p>

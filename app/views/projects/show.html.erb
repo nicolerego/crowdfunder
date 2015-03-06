@@ -1,25 +1,27 @@
 <h1><%= @project.name %></h1>
-<%= link_to "Edit this Project", edit_project_path %> | 
-<%= link_to "Delete this Project", @project, data: {confirm: "Are you sure you want to delete this project?"}, :method => :delete %>
+<% if current_user == @project.owner %>
+	<%= link_to "Edit this Project", edit_project_path %>
+	<% if @project.amount_raised == 0 %>
+	| <%= link_to "Delete this Project", @project, data: {confirm: "Are you sure you want to delete this project?"}, :method => :delete %>
+	<% end %>
+<% end %>
 
-
-<div>
-	<p>Project Photo: <%= image_tag @project.avatar_url(:medium) %></p>
-	<p>Project Description: <%= @project.description %> </p>
-	<p>Owned and created by: <%= @project.owner.first_name%></p>
-	<p>Funding Goal: $<%= @project.funding_goal %></p>
-	<p>Days to go: <%= distance_of_time_in_words(Time.now, @project.end_date) %></p>
-	
-
+<div id="project_info">
+	<%= render @project %>
 </div>
 
 <h3>Rewards</h3>
 <p></p>
 
 <% @project.rewards.each do |reward| %>
+  <p>PLEDGE <%= number_to_currency reward.amount %></p>
   <p><%= reward.title %> </p>
   <p>What do ya get? <%= reward.description %></p>
-  <div class="button">
-		<input type="submit" value="I'M IN! Pledge $<%= reward.amount %>!">
-	</div>
+  <p><%= reward.number_of_backers %> backers</p>
+
+ 	<button data-pledge-url="<%= project_reward_pledges_path(@project, reward) %>"
+		    class= "pledge_button">
+				I'M IN! Pledge $ <span><%= reward.amount %></span>!
+	</button>
+
 <% end %>
