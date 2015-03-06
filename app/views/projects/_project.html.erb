@@ -4,6 +4,9 @@
 	<p>Project Description: <%= project.description %> </p>
 	<p>Owned and created by: <%= project.owner.first_name%></p>
 	<p>Funding Goal: <%= number_to_currency project.funding_goal %></p>
-	<p>Amount Raised: <span> <%= number_to_currency project.amount_raised %> </span> </p>
+
+	<p>Amount Raised: $<span id="amount"><%= project.amount_raised %></span>.00 </p>
+
 	<p>Days to go: <%= time_ago_in_words(project.end_date) %></p>
+
 </div>
