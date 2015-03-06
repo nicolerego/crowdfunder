@@ -2,8 +2,7 @@ class ProjectsController < ApplicationController
 	before_filter :require_login, only: [:new, :create, :edit]
 	
 	def index
-		@project = Project.all
-		# @project = Project.where("end_date > 'Time.now'")
+		@project = Project.where("end_date >  ?", Time.now)
 
 	end
 
