@@ -3,7 +3,7 @@ $(document).on('ready page:load', function(){
 	 $(".pledge_button").click(function(e){
 		var pledgeUrl = $(e.currentTarget).data('pledge-url');
 
-		var amount = $('.pledge_button span').html();
+		var amount = $(e.currentTarget).find('span').html();
 
 	    $.ajax({
 	    type: "POST",

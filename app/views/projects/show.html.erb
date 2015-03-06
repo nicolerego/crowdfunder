@@ -17,6 +17,7 @@
   <p>PLEDGE <%= number_to_currency reward.amount %></p>
   <p><%= reward.title %> </p>
   <p>What do ya get? <%= reward.description %></p>
+  <p><%= reward.number_of_backers %> backers</p>
 
  	<button data-pledge-url="<%= project_reward_pledges_path(@project, reward) %>"
 		    class= "pledge_button">

@@ -12,9 +12,5 @@ class Project < ActiveRecord::Base
 		pledges.sum('amount')
 	end
 
-	def number_of_backers
-		pledges.count
-	end 
-
 end
 
