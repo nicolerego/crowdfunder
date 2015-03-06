@@ -36,9 +36,9 @@ class Project < ActiveRecord::Base
   def send_emails_if_necessary
     return unless funding_goal == amount_raised
     pledges.map(&:backer).each do |backer|
-      UserMailer.funded_email(backer).deliver_now
+      UserMailer.fully_funded(backer).deliver_now
     end
-    UserMailer.funded_email(owner).deliver_now
+    UserMailer.fully_funded(owner).deliver_now
   end
 
 end

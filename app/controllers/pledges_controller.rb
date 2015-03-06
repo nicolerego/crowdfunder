@@ -14,6 +14,7 @@ class PledgesController < ApplicationController
 		if request.xhr?
 			if @pledge.save
 				@project = @pledge.project
+				@project.send_emails_if_necessary
 				flash[:notice] = "Congratulations you just pledged!"
 				render 'create', layout: false
 			else 
@@ -21,7 +22,7 @@ class PledgesController < ApplicationController
 			end
 		end
 
-		@project.send_emails_if_necessary
+		
 
 	end
 
