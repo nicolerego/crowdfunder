@@ -16,15 +16,4 @@ class Project < ActiveRecord::Base
 		pledges.count
 	end 
 
-	def backed?
-		# Pledge.where("backer_id = '#{@current_user}'")
-		# SELECT * from pledges where backer_id = 'current_user.id';
-
-		
-		# Pledge.where(backer_id: :current_user)
-		# #  @project.pledges.each ... pledge.backer == current_user.id 
-		# pledges.each do |pledge|
-		# 	pledge.backer.id == current_user.id
-		# end
-	end 
 end

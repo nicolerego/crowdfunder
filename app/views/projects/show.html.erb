@@ -10,12 +10,6 @@
 	<%= render @project %>
 </div>
 
-<!-- if current user id macthes pledge backer id for this project  -->
-<!--  @project.pledges.each ... pledge.backer == current_user.id  -->
-<% if @project.backed? %>
-		<p><em>You've backed this project!</em></p>
-<% end %>
-
 <h3>Rewards</h3>
 <p></p>
 
