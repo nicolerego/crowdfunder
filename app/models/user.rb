@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
 
 
   has_many :pledges, foreign_key: :backer_id
-  has_many :backed_projects, through: :pledges, :source => :backer, class_name: 'Project'
+  has_many :backed_projects, through: :pledges, source: :project
   has_many :owned_projects, class_name: 'Project', foreign_key: :owner_id
 
 end

@@ -2,7 +2,7 @@
 
 #as an owner
 #project.name 
-#total amount of $ raised right now
+#total amount of $ raised right now  - Pledges
 #how many backers at each reward
 #how many days are left
 
@@ -19,29 +19,24 @@
 <h1>My Project Status:</h1>
 
 <% current_user.owned_projects.each do |project| %>
-<ul>
-  <h3><%= project.name %></li><br><br>
-  <li><%= project.description %></li><br>
-  <li>Project Funding Goal:  <%= project.funding_goal %></li><br>
-  
-  <!-- we need to be able to look up the project_id in the pledges db for a particular project - need to add project_id to pledges db --> 
-  <!-- total amount of pledged for the project -->
-  <!-- number of backers at each reward -->
-  <li>Time Remaining to Pledge:  <%= distance_of_time_in_words(Time.now, project.end_date) %></li> 
-</ul>
+  <h3><%= project.name %></h3>
+  <li><%= project.description %></li>
+  <li>Project Funding Goal: <%= project.funding_goal %></li>
+  <li>Amount Raised to Date: <%= project.pledges.pluck(:amount).sum(0) %></li>
+  <li>Current Number of Backers: <%= project.pledges.count %>
+  <li>Time Remaining to Pledge: <%= distance_of_time_in_words(Time.now, project.end_date) %></li> 
   <% end %>
 
 <h1>Projects backed:</h1>
 
 <% current_user.backed_projects.each do |project| %>
-<ul>
-  <h3><%= project.name %></li><br><br>
-  <li><%= project.description %></li><br>
-  <li><%= project.owner_id[:Users][:first_name][:last_name] %></li><br>
-  <li>Project Funding Goal:  <%= project.funding_goal %></li><br>
-  <li>Amount Pledged:  <%=  %></li><br>
+  <h3><%= project.name %></h3>
+  <li><%= project.description %></li>
+  <li><%= project.owner.first_name %> <%= project.owner.last_name %> </li>
+  <li>Project Funding Goal: <%= project.funding_goal %></li>
+  <li>Pledged Amount: <%= project.pledges.pluck(:amount).sum(0) %></li>
 </ul>
   <% end %>
 
-
-
+<!-- total amount of $ I've spent on all the project
+want to be notified when any projects meet their goal -->
