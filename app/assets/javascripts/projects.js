@@ -10,5 +10,10 @@ $(document).on('ready page:load', function(){
 		setTimeout(start_timer, 2000)
 	}
 
-	start_timer()
+	 start_timer()
+
+	$(".pledge_button").click(function(){
+		var amount = $('.pledge_button span').html();
+		//console.log('amount: ' + amount);
+	});
 });

@@ -41,6 +41,7 @@ class ProjectsController < ApplicationController
 			flash.now[:alert] = "Some error occured, retry editting the project"
 			render :edit
 		end
+
 	end
 
 	def destroy

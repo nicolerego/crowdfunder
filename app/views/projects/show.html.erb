@@ -1,6 +1,8 @@
 <h1><%= @project.name %></h1>
+<% if current_user == @project.owner %>
 <%= link_to "Edit this Project", edit_project_path %> | 
 <%= link_to "Delete this Project", @project, data: {confirm: "Are you sure you want to delete this project?"}, :method => :delete %>
+<% end %>
 
 <div id="project_info">
 	<%= render @project %>
@@ -12,7 +14,7 @@
 <% @project.rewards.each do |reward| %>
   <p><%= reward.title %> </p>
   <p>What do ya get? <%= reward.description %></p>
-  <div class="button">
-		<input type="submit" value="I'M IN! Pledge $<%= reward.amount %>!">
-	</div>
+ 	<button>
+		<p class= "pledge_button">I'M IN! Pledge $ <span><%= reward.amount %></span>!</p>
+	</button>
 <% end %>
