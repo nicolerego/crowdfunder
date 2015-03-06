@@ -1,20 +1,4 @@
-<!--
 
-#as an owner
-#project.name 
-#total amount of $ raised right now  - Pledges
-#how many backers at each reward
-#how many days are left
-
-
-#as a backer
-
-#want to see who owns the project
-#all the projects I have backed
-#total amount of $ I've spent on a project
-#want to be notified when any projects meet their goal
-
--->
 
 <h1>My Project Status:</h1>
 
@@ -37,6 +21,8 @@
   <li>Pledged Amount: <%= project.pledges.pluck(:amount).sum(0) %></li>
 </ul>
   <% end %>
+
+
 
 <!-- total amount of $ I've spent on all the project
 want to be notified when any projects meet their goal -->
