@@ -1,34 +1,48 @@
 
 <%= form_for(@project, html: {multipart: true}) do |f| %>
-    <div>
+  <% if @project.errors.any? %>
+      <div id="error_explanation">
+        <h3>
+          Whoops!
+          <%= pluralize(@project.errors.count, "error")%>
+          prohibited this project from being saved:
+        </h3>
+        <ul>
+          <% @project.errors.full_messages.each do |message|%>
+          <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="field">
       <%= f.label :name %>
       <%= f.text_field :name %>
     </div>
-    <div>
+    <div class="field">
       <%= f.label :description %>
       <%= f.text_field :description %>
     </div>
-  <div>
-    <%= f.label :funding_goal %>
-    <%= f.number_field :funding_goal %>
-  </div>
-  <div>
-    <%= f.label :start_date %>
-    <%= f.date_field :start_date %>
-  </div>
-  <div>
-    <%= f.label :end_date %>
-    <%= f.date_field :end_date %>
-  </div>
-
-  <p>Rewards</p>
-  <div id="rewards">
-    <%= f.fields_for :rewards do |reward| %>
-    <%= render 'reward_fields', :f => reward %>
-    <% end %>
-    <div class="links">
-      <%= link_to_add_association 'Add a Reward', f, :rewards %>
+    <div class="field">
+      <%= f.label :funding_goal %>
+      <%= f.number_field :funding_goal %>
     </div>
-  </div>
-  <%= f.submit :submit %>
+    <div class="field">
+      <%= f.label :start_date %>
+      <%= f.date_field :start_date %>
+    </div>
+    <div class="field">
+      <%= f.label :end_date %>
+      <%= f.date_field :end_date %>
+    </div>
+
+    <p>Rewards</p>
+    <div id="rewards">
+      <%= f.fields_for :rewards do |reward| %>
+      <%= render 'reward_fields', :f => reward %>
+      <% end %>
+      <div class="links">
+        <%= link_to_add_association 'Add a Reward', f, :rewards %>
+      </div>
+    </div>
+    <%= f.submit :submit %>
 <% end %>

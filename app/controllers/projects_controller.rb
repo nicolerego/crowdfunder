@@ -1,8 +1,10 @@
 class ProjectsController < ApplicationController
-	before_filter :require_login, only: [:new, :create]
+	before_filter :require_login, only: [:new, :create, :edit]
 	
 	def index
 		@project = Project.all
+		# @project = Project.where("end_date > 'Time.now'")
+
 	end
 
 	def new
@@ -11,7 +13,6 @@ class ProjectsController < ApplicationController
 
 	def create
 		@project = current_user.owned_projects.new(project_params)
-		# @project = Project.new(project_params)
 		if @project.save
 			redirect_to project_url(@project), notice: "Project was created!"
 		else
