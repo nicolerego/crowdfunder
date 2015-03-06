@@ -53,10 +53,12 @@ class ProjectsController < ApplicationController
 			  		  :funding_goal, 
 			  		  :start_date, 
 			  		  :end_date, 
+							:avatar,
+							:avatar_cache, 
 			  		  rewards_attributes: [ 
 			  		  	:id, 
 			  		  	:title, 
-			  		  	:description, 
+			  		  	:description,
 			  		  	:amount, 
 			  		  	:backer_limit, 
 			  		  	:_destroy

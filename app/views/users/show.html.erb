@@ -20,7 +20,12 @@
   <li>Project Funding Goal: <%= project.funding_goal %></li>
   <li>Pledged Amount: <%= project.pledges.pluck(:amount).sum(0) %></li>
 </ul>
-  <% end %>
+  <% end %><br>
+
+
+  Total pledged for all the projects: <%= current_user.total_pledges %>
+
+
 
 
 

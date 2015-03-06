@@ -3,5 +3,8 @@ class PledgeController < ApplicationController
   end
 
   def create
+
+
+    @project.send_emails_if_necessary
   end
 end

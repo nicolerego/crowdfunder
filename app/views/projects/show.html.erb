@@ -4,13 +4,12 @@
 
 
 <div>
-	<p>Project Photo here!</p>
+	<p>Project Photo: <%= image_tag @project.avatar_url(:medium) %></p>
 	<p>Project Description: <%= @project.description %> </p>
 	<p>Owned and created by: <%= @project.owner.first_name%></p>
 	<p>Funding Goal: $<%= @project.funding_goal %></p>
 	<p>Days to go: <%= distance_of_time_in_words(Time.now, @project.end_date) %></p>
-	<!-- <p>Start date: <%= @project.start_date.strftime("%b %d, %Y") %></p>
-	<p>End date: <%= @project.end_date.strftime("%b %d, %Y") %></p> -->
+	
 
 </div>
 
