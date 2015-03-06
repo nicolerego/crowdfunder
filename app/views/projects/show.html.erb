@@ -14,7 +14,18 @@
 <% @project.rewards.each do |reward| %>
   <p><%= reward.title %> </p>
   <p>What do ya get? <%= reward.description %></p>
- 	<button>
-		<p class= "pledge_button">I'M IN! Pledge $ <span><%= reward.amount %></span>!</p>
+ 	
+
+ 	<button data-pledge-url="<%= project_reward_pledges_path(@project, reward) %>"
+		    class= "pledge_button">
+				I'M IN! Pledge $ <span><%= reward.amount %></span>!
 	</button>
+
+
+
+<!-- check -->
+<!-- http://code.tutsplus.com/tutorials/using-unobtrusive-javascript-and-ajax-with-rails-3--net-15243 -->
+<!-- <td> link_to 'pledge2', post, :confirm => 'Are you sure you want to pledge?', :method => :post, :remote=>true, :class=>'pledge2' %></td> -->
+
+
 <% end %>

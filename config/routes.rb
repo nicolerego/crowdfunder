@@ -1,15 +1,18 @@
 Rails.application.routes.draw do
   get 'pledge/show'
 
-  get 'pledge/create'
+  get 'pledge/create' => 'pledge#new', :as => :pledge
 
   get 'home/index'
 
   root 'home#index'
 
-  resources :projects
-  resources :rewards
-  resources :pledges
+  resources :projects do
+    resources :rewards do
+      resources :pledges
+    end
+  end
+
   resources :users
   resources :user_sessions
 
