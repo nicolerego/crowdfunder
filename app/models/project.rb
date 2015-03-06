@@ -11,4 +11,20 @@ class Project < ActiveRecord::Base
 	def amount_raised
 		pledges.sum('amount')
 	end
+
+	def number_of_backers
+		pledges.count
+	end 
+
+	def backed?
+		# Pledge.where("backer_id = '#{@current_user}'")
+		# SELECT * from pledges where backer_id = 'current_user.id';
+
+		
+		# Pledge.where(backer_id: :current_user)
+		# #  @project.pledges.each ... pledge.backer == current_user.id 
+		# pledges.each do |pledge|
+		# 	pledge.backer.id == current_user.id
+		# end
+	end 
 end

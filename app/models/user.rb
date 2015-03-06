@@ -11,4 +11,8 @@ class User < ActiveRecord::Base
   has_many :backed_projects, through: :pledges, :source => :backer, class_name: 'Project'
   has_many :owned_projects, class_name: 'Project', foreign_key: :owner_id
 
+  def money_spent
+  	pledges.sum('amount')
+  end 
+  
 end

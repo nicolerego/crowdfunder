@@ -24,7 +24,12 @@
 		<%= project.funding_goal %>
 		<!-- current pledge amount -->
 		<%= distance_of_time_in_words(Time.now, project.end_date) %> 
+
 	<% end %>
+	
 
 <h1>Projects backed:</h1>
+
+<h2>Total Money Spent on Projects I've Backed</h2>
+<p><%= number_to_currency current_user.money_spent %> </p>
 
