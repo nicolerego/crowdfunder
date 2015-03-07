@@ -1,40 +1,49 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title>Crowdfunder</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-	<div id="nav">
-		<%= link_to 'Home', root_path %> |
-		<%= link_to 'Start', new_project_path %> |
-		<%= link_to 'Discover', projects_path %> |
-		<% if current_user %>
-				<%= link_to 'Profile', user_path(current_user.id) %> |
-				<%= link_to 'Logout', :logout, method: :post %>
-			<% else %>
-				<%= link_to 'Register', new_user_path %> |
-				<%= link_to 'Login', :login %>
-		<% end %>
-	</div>
-	
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title><%= content_for?(:title) ? yield(:title) : "Crowdfunder" %></title>
+
+    <%= stylesheet_link_tag    "application" %>
+    <%= javascript_include_tag "vendor/modernizr" %>
+    <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
+
+  <body>
+  	<nav class="top-bar" data-topbar role="navigation">
+		<ul class="title-area">
+			<li class="name">
+				<h1><a href="<%= root_path %>">CROWDFUNDER</a></h1>
+			</li>
+			<li class="toggle-topbar menu-icon"><a href="#"><span></span></a></li>
+		</ul>
+		<section class="top-bar-section">
+			<ul class="left">
+      			<li><%= link_to 'Start', new_project_path %></li>
+      			<li><%= link_to 'Discover', projects_path %> </li>
+      		</ul>
+      		<ul class="right">
+      			<% if current_user %>
+      				<li><a href="#">Signed in as <%= current_user.first_name.capitalize %></a></li>
+      				<li><%= link_to 'Profile', user_path(current_user.id) %></li>
+   			 		<li><%= link_to 'Logout', :logout, method: :post %></li>
+   			 	<% else %>
+					<li><%= link_to 'Sign Up', new_user_path %></li>
+					<li><%= link_to 'Login', :login %></li>
+				<% end %>
+   			 </ul>
+		</section>
+	</nav>
 	<div>
 		<p id="notice"><%= flash[:notice] %></p>
 		<p id="alert"><%= flash[:alert] %></p>
 	</div>
-	
 
-<%= yield %>
+    <%= yield %>
 
-<p class="userinfo">
-     <% if current_user %>
-       Signed in as <%= current_user.first_name.capitalize %>. <%= link_to "Log out", :logout, method: :post %>
-     <% else %>
-       <%= link_to "Log in", new_user_session_path %> or <%= link_to "Sign up", new_user_path %>
-     <% end %>
-</p>
 
-</body>
+  </body>
 </html>

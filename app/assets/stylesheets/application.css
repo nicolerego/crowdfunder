@@ -12,17 +12,37 @@
  *
  *= require_tree .
  *= require_self
+ *= require foundation_and_overrides
+
+
  */
 
 @import url(http://fonts.googleapis.com/css?family=Roboto:300);
 
-body {font-family: 'Roboto', sans-serif;}
+
+body {font-family: 'Roboto', sans-serif important!}
 
 .pledge_button {
-	background-color: blue;
+	background-color: #ccc;
 	padding: 0.5em;
 	color: white;
-	font-size: 15pt;
+	font-size: 12pt;
 	border:none;
 	outline:none;
+}
+
+#project_info {
+	margin-top:40px;
+}
+
+#project_info img {
+	float:left;
+	max-width:500px;
+	width:100%;
+	margin-right:20px;
+}
+
+#project_info .small-4.columns {
+	width:100%;
+	margin-left:0px;
 }

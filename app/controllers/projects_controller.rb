@@ -2,6 +2,7 @@ class ProjectsController < ApplicationController
 	before_filter :require_login, only: [:new, :create, :edit]
 	
 	def index
+		# @project = Project.all
 		@project = Project.where("end_date >  ?", Time.now).order('projects.created_at DESC').page(params[:page])
 	end
 

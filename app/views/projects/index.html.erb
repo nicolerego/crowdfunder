@@ -1,11 +1,14 @@
 <h1>Projects</h1>
-
+<div class="row">
 <% @project.each do |project| %>
+<div class="medium-4 columns">
   <h4><%= project.name %></h4>
 	<p>Project Description: <%= project.description %> </p>
   <p><%= link_to "Check it out!", "/projects/#{project.id}" %></p>
+</div>
 <% end %>
 
 <br>
 <br>
- <%= link_to "New Project", new_project_path %>
+</div>
+

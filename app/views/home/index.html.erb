@@ -1,30 +1,42 @@
-<h1>Crowdfunder!</h1>
-
-<h3>Popular Projects</h3>
-
+<div class="row">
+	<h2>What's Popular</h2></br>
 	<% @top3projects.each do |project| %>
-		<div id="homeprojects">
-		  <h4><%= project.name %></h4>
-		  <p>
-			  by <%= project.owner.first_name %> <%= project.owner.last_name %> </br>
-			  <%= project.description %> </br>
-			  Goal:  <%= number_to_currency project.funding_goal %></br>
-			  Pledged: <%= number_to_currency project.amount_raised %></br>
-			  Days to go: <%= (project.end_date - project.start_date).to_i %> days</br>
-			  <p><%= link_to "Check it out!", "/projects/#{project.id}" %></p>
-		  </p>
+		<div class="medium-4 columns">
+			<%= image_tag project.avatar_url(:large) %>
+			<h5><strong><%= project.name %></strong>
+			by <em><%= project.owner.first_name %> <%= project.owner.last_name %></em></h5>
+			<p>
+			<%= project.description %> </br>
+			Goal:  <%= number_to_currency project.funding_goal %></br>
+			Pledged: <%= number_to_currency project.amount_raised %></br>
+			Days to go: <%= (project.end_date - project.start_date).to_i %> days</br>
+				<p><%= link_to "Check it out!", "/projects/#{project.id}" %></p>
+			</p>
 		</div>
 	<% end %>
+</div>
 
-<h3>Find a Project</h3>
-<h4>Categories</h4>
-<%= Project.select_categories.join(" ") %></br></br>
+<div class="row">
+	<h3>Find a Project</h3>
+	<!-- <h4>Categories</h4>
+	<%= Project.select_categories.join(" ") %></br></br>
+	-->
+	<%= form_tag projects_path, method: :get, remote: true, authentication: false, id: 'search-form' do %>
+		<div class="row collapse">
+			<div class="small-10 columns">
+				<%= text_field_tag :search, params[:search],  placeholder: '' %>
+			</div>
+			<div class="small-2 columns">
+				<%= submit_tag "Search", :class => "button postfix" %>
+			</div>
+		</br></br>
+		</div>
+	<% end %>
+</div>
 
-<%= form_tag projects_path, method: :get, remote: true, authentication: false, id: 'search-form' do %>
-	<%= text_field_tag :search, params[:search] %>
-	<%= submit_tag "Search" %>
-<% end %>
 
-<div id="projects">
-<%= render @projects if @projects %>
+<div class="row">
+	<div id="projects" data-equalizer>
+		<%= render @projects if @projects %>
+	</div>
 </div>
