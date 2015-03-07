@@ -8,7 +8,7 @@
 		  <p>
 			  by <%= project.owner.first_name %> <%= project.owner.last_name %> </br>
 			  <%= project.description %> </br>
-			  Goal:  $<%= project.funding_goal %>.00</br>
+			  Goal:  <%= number_to_currency project.funding_goal %></br>
 			  Pledged: <%= number_to_currency project.amount_raised %></br>
 			  Days to go: <%= (project.end_date - project.start_date).to_i %> days</br>
 			  <p><%= link_to "Check it out!", "/projects/#{project.id}" %></p>
@@ -17,7 +17,9 @@
 	<% end %>
 
 <h3>Find a Project</h3>
-<p>Category Names will be listed here!</p>
+<h4>Categories</h4>
+<%= Project.select_categories.join(" ") %></br></br>
+
 <%= form_tag projects_path, method: :get, remote: true, authentication: false, id: 'search-form' do %>
 	<%= text_field_tag :search, params[:search] %>
 	<%= submit_tag "Search" %>

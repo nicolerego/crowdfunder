@@ -2,7 +2,7 @@ class ProjectsController < ApplicationController
 	before_filter :require_login, only: [:new, :create, :edit]
 	
 	def index
-		@project = Project.where("end_date >  ?", Time.now)
+		@project = Project.where("end_date >  ?", Time.now).order('projects.created_at DESC').page(params[:page])
 	end
 
 	def new
@@ -59,6 +59,7 @@ class ProjectsController < ApplicationController
 			  		  :end_date, 
 							:avatar,
 							:avatar_cache, 
+					  :category,
 			  		  rewards_attributes: [ 
 			  		  	:id, 
 			  		  	:title, 

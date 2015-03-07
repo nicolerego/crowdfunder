@@ -23,21 +23,25 @@
       <%= f.text_field :description %>
     </div>
   <div class="field">
-    <%= f.label :funding_goal %>
+    <%= f.label :funding_goal, "Funding Goal" %>
     <%= f.number_field :funding_goal %>
   </div>
   <div class="field">
-    <%= f.label :start_date %>
+    <%= f.label :start_date, "Project Start Date"%>
     <%= f.date_field :start_date %>
   </div>
   <div class="field">
-    <%= f.label :end_date %>
+    <%= f.label :end_date, "Project End Date"%>
     <%= f.date_field :end_date %>
   </div>
     <div class="field">
-      <%= f.label :avatar %>
+      <%= f.label :avatar, "Upload a Project Photo" %>
       <%= f.file_field :avatar %>
       <%= f.hidden_field :avatar_cache %>
+    </div>
+    <div class="field">
+    <%= f.label :category %>
+    <%= f.select :category, Project.select_categories %>
     </div>
 
     <p>Rewards</p>

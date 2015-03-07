@@ -1,12 +1,15 @@
 
 <div>
-	<p>Project Photo: <%= image_tag project.avatar_url(:medium) %></p>
-	<p>Project Description: <%= project.description %> </p>
-	<p>Owned and created by: <%= project.owner.first_name%></p>
+	<% if project.avatar_url != nil %>
+		<p>Project Photo: <%= image_tag project.avatar_url(:medium) %></p>
+	<% end %>
+	<p> <%= link_to project.name, "/projects/#{project.id}" %> </p>
+	<p>Description: <%= project.description %> </p>
+	<% if (project.category != nil) %>
+		<p>Category: <%= project.category %> </p>
+	<% end %>
+	<p>Created by <%= project.owner.first_name%> <%= project.owner.last_name%></p>
 	<p>Funding Goal: <%= number_to_currency project.funding_goal %></p>
-
 	<p>Amount Raised: $<span id="amount"><%= project.amount_raised %></span>.00 </p>
-
 	<p>Days to go: <%= time_ago_in_words(project.end_date) %></p>
-
 </div>

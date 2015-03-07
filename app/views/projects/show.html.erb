@@ -11,6 +11,7 @@
 </div>
 
 <h3>Rewards</h3>
+
 <p></p>
 
 <% @project.rewards.each do |reward| %>
@@ -18,10 +19,14 @@
   <p><%= reward.title %> </p>
   <p>What do ya get? <%= reward.description %></p>
   <p><%= reward.number_of_backers %> backers</p>
-
- 	<button data-pledge-url="<%= project_reward_pledges_path(@project, reward) %>"
-		    class= "pledge_button">
-				I'M IN! Pledge $ <span><%= reward.amount %></span>!
-	</button>
+	
+	<% if current_user %>
+	 	<button data-pledge-url="<%= project_reward_pledges_path(@project, reward) %>"
+			    class= "pledge_button">
+					I'M IN! Pledge $ <span><%= reward.amount %></span>!
+		</button>
+	<% else %>
+		<p>You must be logged in to pledge!<p>
+	<% end %>
 
 <% end %>

@@ -41,5 +41,9 @@ class Project < ActiveRecord::Base
     UserMailer.fully_funded(owner).deliver_now
   end
 
+  def self.select_categories
+    %w[Art Comics Crafts Dance Design Fashion Film\ &\ Video Food Games Journalism Music Photography Publishing Technology Theatre]
+  end
+
 end
 

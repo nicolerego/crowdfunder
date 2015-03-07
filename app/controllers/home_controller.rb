@@ -1,7 +1,8 @@
 class HomeController < ApplicationController
 	def index
-    # sort by pledged amount desc
-		@top3projects = Project.all.limit(3)
+    @top3projects = Project.where("end_date >  ?", Time.now).order(funding_goal: :DESC).limit(3)
+
+    # order by amount_raised :DESC
 
     if params[:search]
      		@projects = Project.where("LOWER(name) LIKE LOWER(?)", "%#{params[:search]}%")

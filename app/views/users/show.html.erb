@@ -3,22 +3,22 @@
 <% current_user.owned_projects.each do |project| %>
   <h3><%= project.name %></h3>
   <li><%= project.description %></li>
-  <li>Project Funding Goal: <%= project.funding_goal %></li>
-  <li>Amount Raised to Date: <%= project.pledges.pluck(:amount).sum(0) %></li>
+  <li>Project Funding Goal: <%= number_to_currency project.funding_goal %></li>
+  <li>Amount Raised to Date: <%= number_to_currency project.pledges.pluck(:amount).sum(0) %></li>
   <li>Current Number of Backers: <%= project.pledges.count %>
   <li>Time Remaining to Pledge: <%= distance_of_time_in_words(Time.now, project.end_date) %></li> 
   <% end %>
 
 <h1>Projects backed:</h1>
 
-<% current_user.backed_projects.each do |project| %>
+<% current_user.backed_projects.uniq.each do |project| %>
   <h3><%= project.name %></h3>
   <li><%= project.description %></li>
-  <li><%= project.owner.first_name %> <%= project.owner.last_name %> </li>
-  <li>Project Funding Goal: <%= project.funding_goal %></li>
-  <li>Pledged Amount: <%= project.pledges.pluck(:amount).sum(0) %></li>
+  <li>by <%= project.owner.first_name %> <%= project.owner.last_name %> </li>
+  <li>Funding Goal: <%= number_to_currency project.funding_goal %></li>
+  <li>Pledged Amount: <%=  %></li>
 </ul>
   <% end %><br>
 
 
-  Total pledged for all the projects: <%= current_user.total_pledges %>
+  Total pledged for all the projects: <%= number_to_currency current_user.total_pledges %>
