@@ -1,24 +1,29 @@
-<h1>My Project Status:</h1>
+<div class="row">
+  <h3>Hi <%= current_user.first_name%>, </br>Check out your current project statuses below!</h3></br>
 
 <% current_user.owned_projects.each do |project| %>
-  <h3><%= project.name %></h3>
-  <li><%= project.description %></li>
-  <li>Project Funding Goal: <%= number_to_currency project.funding_goal %></li>
-  <li>Amount Raised to Date: <%= number_to_currency project.pledges.pluck(:amount).sum(0) %></li>
-  <li>Current Number of Backers: <%= project.pledges.count %>
-  <li>Time Remaining to Pledge: <%= distance_of_time_in_words(Time.now, project.end_date) %></li> 
+<div class="medium-4 columns">
+  <h4><%= project.name %></h4>
+  <p>
+  Project Funding Goal: <%= number_to_currency project.funding_goal %></br>
+  Amount Raised to Date: <%= number_to_currency project.pledges.pluck(:amount).sum(0) %></br>
+  Current Number of Backers: <%= project.pledges.count %></br>
+  Time Remaining to Pledge: <%= distance_of_time_in_words(Time.now, project.end_date) %></br>
+  </p>
+</div>
   <% end %>
 
-<h1>Projects backed:</h1>
 
+<h3>Projects you've backed:</h3>
+ <p>(Total pledged for all projects: <%= number_to_currency current_user.total_pledges %>)</p>
 <% current_user.backed_projects.uniq.each do |project| %>
-  <h3><%= project.name %></h3>
-  <li><%= project.description %></li>
-  <li>by <%= project.owner.first_name %> <%= project.owner.last_name %> </li>
-  <li>Funding Goal: <%= number_to_currency project.funding_goal %></li>
-  <li>Pledged Amount: <%=  %></li>
-</ul>
+  <div class="medium-4 columns">
+    <h4><%= project.name %></h4>
+    <p><%= project.description %>
+    by <%= project.owner.first_name %> <%= project.owner.last_name %> </br>
+    Funding Goal: <%= number_to_currency project.funding_goal %></br>
+    Pledged Amount: <%=  %></p>
+  </div>
   <% end %><br>
 
-
-  Total pledged for all the projects: <%= number_to_currency current_user.total_pledges %>
+</div>

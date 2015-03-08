@@ -1,11 +1,20 @@
-<h1>Projects</h1>
+<div class="row">
+<h2>Find a Project to Back!</h2></br>
+</div>
 <div class="row">
 <% @project.each do |project| %>
-<div class="medium-4 columns">
-  <h4><%= project.name %></h4>
-	<p>Project Description: <%= project.description %> </p>
-  <p><%= link_to "Check it out!", "/projects/#{project.id}" %></p>
-</div>
+<div class="medium-6 columns">
+			<%= image_tag project.avatar_url(:large) %>
+			<h5><strong><%= link_to project.name %></strong>
+			by <em><%= project.owner.first_name %> <%= project.owner.last_name %></em></h5>
+			<p>
+			<%= project.description %> </br>
+			Goal:  <%= number_to_currency project.funding_goal %></br>
+			Pledged: <%= number_to_currency project.amount_raised %></br>
+			Days to go: <%= (project.end_date - project.start_date).to_i %> days</br>
+				<p><%= link_to "Check it out!", "/projects/#{project.id}" %></p>
+			</p>
+		</div>
 <% end %>
 
 <br>

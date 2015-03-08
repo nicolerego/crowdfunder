@@ -3,14 +3,13 @@
 	<% @top3projects.each do |project| %>
 		<div class="medium-4 columns">
 			<%= image_tag project.avatar_url(:large) %>
-			<h5><strong><%= project.name %></strong>
+			<h5><strong><%= link_to project.name, "/projects/#{project.id}" %></strong>
 			by <em><%= project.owner.first_name %> <%= project.owner.last_name %></em></h5>
 			<p>
 			<%= project.description %> </br>
 			Goal:  <%= number_to_currency project.funding_goal %></br>
 			Pledged: <%= number_to_currency project.amount_raised %></br>
 			Days to go: <%= (project.end_date - project.start_date).to_i %> days</br>
-				<p><%= link_to "Check it out!", "/projects/#{project.id}" %></p>
 			</p>
 		</div>
 	<% end %>

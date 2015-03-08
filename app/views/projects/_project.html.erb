@@ -4,7 +4,7 @@
 		<% end %>
 		<div class="details"=>
 		<%= link_to project.name, "/projects/#{project.id}" %> by <%= project.owner.first_name%> <%= project.owner.last_name%></br>
-		Description: <%= project.description %> </br>
+		About This Project: <%= project.description %> </br>
 		<% if (project.category != nil) %>
 			Category: <%= project.category %> </br>
 		<% end %>

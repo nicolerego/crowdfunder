@@ -1,5 +1,7 @@
-<h1>Edit Project</h1>
+<div class="row">
+<h3>Edit Project</h3>
 
 <%= link_to "Back to Project", "/projects/#{@project.id}" %> | <%= link_to "Delete This Project", @project, method: :delete, data: {confirm: "Are you sure?"} %>
 
 <%= render 'form' %> 
+</div>

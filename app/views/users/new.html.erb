@@ -1,4 +1,6 @@
+<div class="row">
 <h1>Sign Up!</h1>
+<div class="medium-6 column center">
 <%= form_for @user do |f| %>
 	<% if @user.errors.any? %>
 		<div id="error_explanation">
@@ -15,11 +17,11 @@
 		</div>
     <% end %>
 	<div class="field">
-		<%= f.label :first_name %>
+		<%= f.label :first_name, "First Name"%>
 		<%= f.text_field :first_name %>
 	</div>
 	<div class="field">
-		<%= f.label :last_name %>
+		<%= f.label :last_name, "Last Name" %>
 		<%= f.text_field :last_name %>
 	</div>
 	<div class="field">
@@ -31,10 +33,12 @@
 		<%= f.password_field :password %>
 	</div>
 	<div class="field">
-		<%= f.label :password_confirmation %>
+		<%= f.label :password_confirmation, "Confirm Password" %>
 		<%= f.password_field :password_confirmation %>
 	</div>
 	<div class="actions">
-		<%= f.submit "Sign Me Up!"%>
+		<%= f.submit "Sign Me Up!", :class => "button"%>
 	</div>
 <% end %>
+</div>
+</div>
