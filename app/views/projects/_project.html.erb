@@ -1,15 +1,21 @@
-	<div class= "small-4 columns" data-equalizer-watch>
-		<% if project.avatar_url != nil %>
-			<%= image_tag project.avatar_url(:large) %></br>
+<div class= "small-4 columns" data-equalizer-watch>
+	<% if project.avatar_url != nil %>
+		<%= image_tag project.avatar_url(:large) %></br>
+	<% end %>
+	<div class="details"=>
+	<%= link_to project.name, "/projects/#{project.id}" %> by <%= project.owner.first_name%> <%= project.owner.last_name%></br>
+	About This Project: <%= project.description %> </br>
+	<% if (project.category != nil) %>
+		Category: <%= project.category %> </br>
+	<% end %>
+	Funding Goal: <%= number_to_currency project.funding_goal %></br>
+	Amount Raised: $<span id="amount"><%= project.amount_raised %></span>.00 </br>
+	<%= time_ago_in_words(project.end_date)%> to go!</br></br>
+
+	<div class="row">
+		<% if current_user && current_user.backed_projects.include?(@project) %>
+			<button>You've backed this project!</button>
 		<% end %>
-		<div class="details"=>
-		<%= link_to project.name, "/projects/#{project.id}" %> by <%= project.owner.first_name%> <%= project.owner.last_name%></br>
-		About This Project: <%= project.description %> </br>
-		<% if (project.category != nil) %>
-			Category: <%= project.category %> </br>
-		<% end %>
-		Funding Goal: <%= number_to_currency project.funding_goal %></br>
-		Amount Raised: $<span id="amount"><%= project.amount_raised %></span>.00 </br>
-		<%= time_ago_in_words(project.end_date)%> to go!</br>
 	</div>
-	</div>
+</div>
+</div>
